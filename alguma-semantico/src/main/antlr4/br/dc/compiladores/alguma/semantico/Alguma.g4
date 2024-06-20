@@ -1,30 +1,20 @@
 grammar Alguma;
 
 
-NUM_INT
-	:	('0'..'9')+
-	;
+NUM_INT: ('0'..'9')+;
 
-NUM_REAL
-	:	('0'..'9')+ ('.' ('0'..'9')+)?
-	;
+NUM_REAL: ('0'..'9')+ ('.' ('0'..'9')+)?;
 
-IDENT : ('a'..'z'|'A'..'Z') ('a'..'z'|'A'..'Z'|'0'..'9'|'_')* ;
+IDENT: ('a'..'z'|'A'..'Z') ('a'..'z'|'A'..'Z'|'0'..'9'|'_')* ;
 
-CADEIA
-	:	'"' (ESC_SEQ | ~('\n'|'"'|'\\'))* '"'
-	;
+CADEIA:	'"' (ESC_SEQ | ~('\n'|'"'|'\\'))* '"';
 	
 fragment
-ESC_SEQ
-	:	'\\\'';
+ESC_SEQ: '\\\'';
 
-COMENTARIO
-	:	'{' ~('}'|'\n'|'\r')* '}' {skip();}
-	;
+COMENTARIO:	'{' ~('}'|'\n'|'\r')* '}' {skip();};
 
-WS 	:	( ' ' |'\t' | '\r' | '\n') {skip();}
-	;
+WS: ( ' ' |'\t' | '\r' | '\n') {skip();};
 
 
 programa: declaracoes* 'algoritmo' corpo 'fim_algoritmo';
